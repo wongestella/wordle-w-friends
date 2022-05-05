@@ -1,5 +1,4 @@
 import { ALLWORDS } from "./allwords.js";
-import swal from 'sweetalert';
 
 const GUESS_COUNT = 6;
 let guess_left = GUESS_COUNT;
@@ -56,17 +55,16 @@ function checkWord() {
     }
 
     if (word_guess.length != 5) {
-        swal.fire("Not enough letters!");
+        alert("The Word is too short");
         return;
     }
 
     if (!ALLWORDS.includes(word_guess)) {
-        swal("Not a word list!");
+        alert("Not a word!");
         return;
     }
 
     for (let i = 0; i < 5; i++) {
-        console.log("in for loop")
         let curr_color = '';
         let curr_box = row.children[i];
         let curr_letter = curr_guess[i];
