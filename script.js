@@ -111,12 +111,13 @@ function checkWord() {
 
     if (word_guess === correct_word) {
         Swal.fire({
+            icon: "success",
             title: 'You Win',
             text: 'You guessed the correct word!',
             background: '#191919',
             color: '#C4C4C4',
             confirmButtonColor: '#C84B31',
-            icon: "success"
+            animation: 'false'
           });
         // alert("You Win! You guessed the correct word!");
         guess_left = 0;
