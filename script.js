@@ -33,7 +33,7 @@ function createBoard(){
  */
 function deleteLetter() {
     let curr_word = document.getElementsByClassName("word-row")[6 - guess_left];
-    let box = row.children[next_letter - 1];
+    let box = curr_word.children[next_letter - 1];
     box.textContent = "";
     box.classList.remove("filled-box");
     curr_guess.pop();
@@ -65,6 +65,7 @@ function checkWord() {
     }
 
     for (let i = 0; i < 5; i++) {
+        console.log("in for loop")
         let curr_color = '';
         let curr_box = row.children[i];
         let curr_letter = curr_guess[i];
@@ -72,20 +73,20 @@ function checkWord() {
 
         if (curr_position !== -1) {
             if (curr_guess[i] === correct_guess[i]) {
-                curr_color = 'green';
+                curr_color = '#538D4E';
             } else {
-                curr_color = 'yellow';
+                curr_color = '#BAA13B';
             }
 
             correct_guess[curr_position] = '#';
         } else {
-            curr_color = 'grey';
+            curr_color = '#3A3A3C';
         }
 
-        let delay = 150 * i;
+        let delay = 1 * i;
         setTimeout(() => {
-            //animateCSS(box, 'flipInX');
-            box.style.backgroundColor = curr_color;
+            //animateCSS(curr_box, 'flipInX');
+            curr_box.style.backgroundColor = curr_color;
             shadeKeyBoard(curr_letter, curr_color);
         }, delay)
     }
@@ -96,7 +97,7 @@ function checkWord() {
         return;
     } else {
         guess_left -= 1;
-        currentGuess = [];
+        curr_guess = [];
         next_letter = 0;
     }
 
@@ -133,8 +134,8 @@ function addLetter(key_pressed) {
 function shadeKeyBoard (letter, color) {
     for (const c of document.getElementsByClassName("keyboard-button")) {
         if (c.textContent === letter) {
-            let prev_color = elem.style.backgroundColor;
-            if ((prev_color === 'green') || (prev_color === 'yellow' && color !== 'green')) {
+            let prev_color = c.style.backgroundColor;
+            if ((prev_color === '#538D4E') || (prev_color === '#BAA13B' && color !== '#538D4E')) {
                 return;
             }
 
@@ -197,9 +198,11 @@ document.getElementById("keyboard").addEventListener("click", (e) => {
     }
     let key = target.textContent;
 
-    if (key === "Del") {
+    if (key === "DEL") {
         key = "Backspace";
-    } 
+    } else if (key === "ENTER") {
+        key = "Enter";
+    }
 
     document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}));
 })

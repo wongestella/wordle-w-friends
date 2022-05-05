@@ -62,15 +62,3 @@ h1 {
     color: #ECDBBA;
     border: none;
 }
-
-.keyboard-button-sp {
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.5rem;
-    margin: 0 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-    background-color: #C84B31; 
-    color: #ECDBBA;
-    border: none;
-}
