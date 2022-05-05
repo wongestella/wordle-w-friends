@@ -1,5 +1,6 @@
 import { ALLWORDS } from "./allwords.js";
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
+// import Swal from 'sweetalert2';
 
 const GUESS_COUNT = 6;
 let guess_left = GUESS_COUNT;
@@ -56,12 +57,28 @@ function checkWord() {
     }
 
     if (word_guess.length != 5) {
-        swal.fire("Not enough letters!");
+        // Swal.fire("Not enough letters!");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Try Again',
+            text: 'Not enough letters!',
+            background: '#191919',
+            color: '#C4C4C4',
+            confirmButtonColor: '#C84B31'
+          });    
         return;
     }
 
     if (!ALLWORDS.includes(word_guess)) {
-        swal("Not a word list!");
+        // swal("Not a word list!");
+        Swal.fire({
+            icon: 'question',
+            title: 'Invalid Word',
+            text: 'Backspace to try again!',
+            background: '#191919',
+            color: '#C4C4C4',
+            confirmButtonColor: '#C84B31'
+          }); 
         return;
     }
 
@@ -93,7 +110,15 @@ function checkWord() {
     }
 
     if (word_guess === correct_word) {
-        alert("You Win! You guessed the correct word!");
+        Swal.fire({
+            title: 'You Win',
+            text: 'You guessed the correct word!',
+            background: '#191919',
+            color: '#C4C4C4',
+            confirmButtonColor: '#C84B31',
+            icon: "success"
+          });
+        // alert("You Win! You guessed the correct word!");
         guess_left = 0;
         return;
     } else {
@@ -103,8 +128,16 @@ function checkWord() {
     }
 
     if (guess_left === 0) {
-        alert("No more guesses left! Game over!");
-        alert(`The correct word was: "${correct_word}"`);
+        Swal.fire({
+            icon: 'error',
+            title: 'Game Over',
+            text: `The correct word was: "${correct_word}"!`,
+            background: '#191919',
+            color: '#C4C4C4',
+            confirmButtonColor: '#C84B31'
+          });
+        // alert("No more guesses left! Game over!");
+        // alert(`The correct word was: "${correct_word}"`);
     }
 }
 
