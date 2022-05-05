@@ -83,7 +83,6 @@ function checkWord() {
     }
 
     for (let i = 0; i < 5; i++) {
-        console.log("in for loop")
         let curr_color = '';
         let curr_box = row.children[i];
         let curr_letter = curr_guess[i];
@@ -98,10 +97,10 @@ function checkWord() {
 
             correct_guess[curr_position] = '#';
         } else {
-            curr_color = '#3A3A3C';
+            curr_color = '#1d1d1f';
         }
 
-        let delay = 1 * i;
+        let delay = 100 * i;
         setTimeout(() => {
             //animateCSS(curr_box, 'flipInX');
             curr_box.style.backgroundColor = curr_color;
@@ -110,14 +109,17 @@ function checkWord() {
     }
 
     if (word_guess === correct_word) {
-        Swal.fire({
-            title: 'You Win',
-            text: 'You guessed the correct word!',
-            background: '#191919',
-            color: '#C4C4C4',
-            confirmButtonColor: '#C84B31',
-            icon: "success"
-          });
+        let delay = 800;
+        setTimeout(() => {
+            Swal.fire({
+                title: 'You Win',
+                text: 'You guessed the correct word!',
+                background: '#191919',
+                color: '#C4C4C4',
+                confirmButtonColor: '#C84B31'
+            });
+        }, delay)
+        
         // alert("You Win! You guessed the correct word!");
         guess_left = 0;
         return;
@@ -172,7 +174,7 @@ function shadeKeyBoard (letter, color) {
             if ((prev_color === '#538D4E') || (prev_color === '#BAA13B' && color !== '#538D4E')) {
                 return;
             }
-
+            
             c.style.backgroundColor = color;
             break;
         }
