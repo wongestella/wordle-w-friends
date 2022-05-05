@@ -1,6 +1,7 @@
-import { ALLWORDS } from "./allwords.js"
+import { ALLWORDS } from "./allwords.js";
+import swal from 'sweetalert';
 
-const GUESS_COUNT = 6
+const GUESS_COUNT = 6;
 let guess_left = GUESS_COUNT;
 let curr_guess = [];
 let next_letter = 0;
@@ -55,12 +56,12 @@ function checkWord() {
     }
 
     if (word_guess.length != 5) {
-        alert("Not enough letters!");
+        swal.fire("Not enough letters!");
         return;
     }
 
     if (!ALLWORDS.includes(word_guess)) {
-        alert("Not a word list!");
+        swal("Not a word list!");
         return;
     }
 
