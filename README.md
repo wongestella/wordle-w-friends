@@ -1,6 +1,5 @@
 # Wordle W/ Friends
 A wordle recreation, where you can now choose your own word to play with friends, as many times as you would like! :)
-**Created By: Estella Wong and Selena Wong**
 
 ## Problem Motivation
 These past few months, we watched Wordle surge in popularity. And, while the word of the day feature is what keeps people coming back, sometimes we just want to play again. Wordle W/ Friends is the solution we created to that exact problem: not only can you play multiple times a day now, but you can, also, play with the people closest to you—your friends and family. 
@@ -24,3 +23,7 @@ After completing the game shared to you, the player can continue the cycle, and 
 1. One of the greatest challenges we faced during the development process was generating (and, ideally, copying) the link automatically for the user. While our current version has a work around, creating a smoother process for our users is one of next action items.
 2. To further the friendly competition among friends, we would like to implement more features to facilitate that. For instance, creating a timer, keeping track of the number of guesses, and creating a composite score friends can compare are all ideas for this next step of advancing the current wordle game. 
 3. Updating/improving other current inconsistencies, including animations and keyboard coloring.
+
+---
+
+**Created By: Estella Wong and Selena Wong**
