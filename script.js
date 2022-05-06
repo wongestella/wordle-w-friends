@@ -6,10 +6,14 @@ const GUESS_COUNT = 6;
 let guess_left = GUESS_COUNT;
 let curr_guess = [];
 let next_letter = 0;
-let correct_word = ALLWORDS[Math.floor(Math.random() * ALLWORDS.length)];
+// let correct_word = ALLWORDS[Math.floor(Math.random() * ALLWORDS.length)];
+let indexLink = window.location.href.toString().split("game.html")[0] + "index.html";
+
+let encrypted = window.location.search.toString().split("?code=")[1];
+var correct_word = CryptoJS.AES.decrypt(encrypted, "wordlewfriends").toString(CryptoJS.enc.Utf8);
 
 // will print out the correct word just incase we need to debug
-console.log(correct_word);
+// console.log(correct_word);
 
 function createBoard(){
     let board = document.getElementById("board");
@@ -83,7 +87,6 @@ function checkWord() {
     }
 
     for (let i = 0; i < 5; i++) {
-        console.log("in for loop")
         let curr_color = '';
         let curr_box = row.children[i];
         let curr_letter = curr_guess[i];
@@ -98,10 +101,10 @@ function checkWord() {
 
             correct_guess[curr_position] = '#';
         } else {
-            curr_color = '#3A3A3C';
+            curr_color = '#1d1d1f';
         }
 
-        let delay = 1 * i;
+        let delay = 100 * i;
         setTimeout(() => {
             //animateCSS(curr_box, 'flipInX');
             curr_box.style.backgroundColor = curr_color;
@@ -110,15 +113,26 @@ function checkWord() {
     }
 
     if (word_guess === correct_word) {
-        Swal.fire({
-            icon: "success",
-            title: 'You Win',
-            text: 'You guessed the correct word!',
-            background: '#191919',
-            color: '#C4C4C4',
-            confirmButtonColor: '#C84B31',
-            animation: 'false'
-          });
+        let delay = 800;
+        setTimeout(() => {
+            Swal.fire({
+                title: 'You Win',
+                text: "You guessed the correct word!",
+                icon: 'success',
+                background: '#191919',
+                color: '#C4C4C4',
+                cancelButtonText: "Close",
+                showCancelButton: true,
+                confirmButtonText: "Play Again",
+                confirmButtonColor: '#C84B31',
+                cancelButtonColor: '#2D4263',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open(indexLink, '_self');
+                }
+            })
+        }, delay)
+        
         // alert("You Win! You guessed the correct word!");
         guess_left = 0;
         return;
@@ -130,13 +144,21 @@ function checkWord() {
 
     if (guess_left === 0) {
         Swal.fire({
-            icon: 'error',
             title: 'Game Over',
             text: `The correct word was: "${correct_word}"!`,
+            icon: 'error',
             background: '#191919',
             color: '#C4C4C4',
-            confirmButtonColor: '#C84B31'
-          });
+            cancelButtonText: "Close",
+            showCancelButton: true,
+            confirmButtonText: "Play Again",
+            confirmButtonColor: '#C84B31',
+            cancelButtonColor: '#2D4263',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.open(indexLink, '_self');
+            }
+        })
         // alert("No more guesses left! Game over!");
         // alert(`The correct word was: "${correct_word}"`);
     }
@@ -173,7 +195,7 @@ function shadeKeyBoard (letter, color) {
             if ((prev_color === '#538D4E') || (prev_color === '#BAA13B' && color !== '#538D4E')) {
                 return;
             }
-
+            
             c.style.backgroundColor = color;
             break;
         }
