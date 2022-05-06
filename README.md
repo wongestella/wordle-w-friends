@@ -1,5 +1,6 @@
 # Wordle W/ Friends
 A wordle recreation, where you can now choose your own word to play with friends, as many times as you would like! :)
+Play Here: https://wongestella.github.io/wordle-w-friends/
 
 ## Problem Motivation
 These past few months, we watched Wordle surge in popularity. And, while the word of the day feature is what keeps people coming back, sometimes we just want to play again. Wordle W/ Friends is the solution we created to that exact problem: not only can you play multiple times a day now, but you can, also, play with the people closest to you—your friends and family. 
